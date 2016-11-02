@@ -1,5 +1,5 @@
 package org.mymvc.web;
 
-public class userAction {
+public class UserAction {
 
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="org.mymvc.dao.UserDao">
+  <resultMap class="org.mymvc.model.User" id="BaseResultMap">
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_phone" jdbcType="BIGINT" property="userPhone" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    user_id, user_name, user_phone, score, create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterClass="org.mymvc.model.User" resultMap="BaseResultMap">
+    select 
+    <include refid="_user.Base_Column_List" />
+    from _user
+    where user_id = #userId:BIGINT#
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterClass="org.mymvc.model.User">
+    delete from _user
+    where user_id = #userId:BIGINT#
+  </delete>
+  
+  <insert id="insert" parameterClass="org.mymvc.model.User">
+    insert into _user (user_id, user_name, user_phone, score, 
+      create_time)
+    values (#userId:BIGINT#, #userName:VARCHAR#, #userPhone:BIGINT#, #score:INTEGER#, 
+      #createTime:TIMESTAMP#)
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="org.mymvc.model.User">
+    update _user
+    set user_name = #userName:VARCHAR#,
+      user_phone = #userPhone:BIGINT#,
+      score = #score:INTEGER#,
+      create_time = #createTime:TIMESTAMP#
+    where user_id = #userId:BIGINT#
+  </update>
+</sqlMap>
