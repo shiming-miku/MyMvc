@@ -22,11 +22,12 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteByPrimaryKey(userId);
 	}
 
+	@Transactional
 	@Override
 	public void insert(User record) {
-		logger.info("UserServiceImpl user:"+record+"新增");
-		userDao.insert(record);
-		
+			logger.info("UserServiceImpl user:"+record+"新增");
+			userDao.insert(record);
+			System.out.println(1/0);
 	}
 
 	@Transactional("transactionManager")
