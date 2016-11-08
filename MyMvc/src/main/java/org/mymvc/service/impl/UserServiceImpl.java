@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteByPrimaryKey(userId);
 	}
 
-	@Transactional
+	@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.DEFAULT)
 	@Override
 	public void insert(User record) {
 			logger.info("UserServiceImpl user:"+record+"新增");
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService {
 			System.out.println(1/0);
 	}
 
-	@Transactional("transactionManager")
+	@Transactional
 	@Override
 	public User selectByPrimaryKey(Long userId) {
 		logger.info("UserServiceImpl userId:"+userId+"查询");
