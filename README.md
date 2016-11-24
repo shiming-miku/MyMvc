@@ -1,3 +1,2 @@
 # MyMvc
 springmvc+maven+mybatis web框架搭建，自己写的例子，不断完善ing......
-开发工具用的是myeclipse
