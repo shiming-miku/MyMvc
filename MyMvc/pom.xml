@@ -226,6 +226,14 @@
 			<version>1.0.8</version>
 		</dependency>
 		<!--mybatis 数据访问层 end -->
+		
+		<!--httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.2</version>
+		</dependency>
+		
 	</dependencies>
   <build>
     <plugins>

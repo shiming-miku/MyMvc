@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mymvc.dao.AccessTokenDao">
+   <resultMap type="AccessToken" id="BaseResultMap">
+    <result column="access_token" jdbcType="VARCHAR" property="access_token" />
+    <result column="expires_in" jdbcType="VARCHAR" property="expires_in" />
+   </resultMap>
+  
+
+  <select id="getAccessToken" resultMap="BaseResultMap">
+     select  
+         accesstoken_id,access_token, expires_in, create_time
+     from access_token 
+     where create_time = (select max(create_time) from access_token)
+  </select> 
+  
+  <insert id="insertAccessToken" parameterType="User">
+    insert into access_token(access_token, expires_in, create_time)
+    values (#{access_token}, #{expires_in}, now())
+  </insert>
+  
+</mapper>
